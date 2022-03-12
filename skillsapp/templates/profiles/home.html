@@ -1,0 +1,59 @@
+{%extends 'base.html'%} 
+{% block content %} 
+{{ block.super}}
+
+<div class="container-fluid">
+
+    <h4 style="align-items: center; color: aqua; font-style:italic; font-weight: bolder;">Programmers Hub</h4>
+    <div class="row p-0 mt-1">
+        <div class="img-container p-3">
+            {% for profile in profiles %}
+             {%if profile.potrait%}
+
+            <div class="image col-md-4">
+                <div class="image-cont">
+                    <img src="{{profile.potrait.url}}" alt="img" data-bs-toggle="modal" data-bs-target="#{{ profile }}" />
+                </div>
+            </div>
+
+            {%endif%}
+
+            <div class="modal fade" id="{{profile}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header m-0 p-2">
+                            <h4 class="modal-title" id="{{profile.id}}">{{picture}}</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body m-0 p-3">
+                            {%if profile.potrait%}
+                            <div class="modal-picture">
+                                <img src="{{profile.potrait.url}}" alt="img" data-bs-toggle="modal"
+                                    data-bs-target="#{{ profile }}" />
+                            </div>
+                            <p class="text-center mt-2">{{profile.description}}</p>
+                            <div class="tag mb-2">
+                                <h5 class="text-info">Skill: {{profile.skill}}</h5>
+                            </div>
+
+                            {%endif%}
+
+                            
+
+                                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {%endfor%}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
